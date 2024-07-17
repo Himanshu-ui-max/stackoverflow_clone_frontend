@@ -7,7 +7,7 @@ const ForgetPasswordBase = () => {
     <div className="bg-gradient-to-b from-white to-gray-200 text-black py-20 flex justify-center">
       <div className="w-1/2 text-center bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold mb-4">
-          Forgot Password !!!
+          Forgot Password ???
         </h1>
         <p className="text-gray-600 mb-8">
           NO worries, Get the OTP by clicking below and validate it by clicking below to change your password to new password
