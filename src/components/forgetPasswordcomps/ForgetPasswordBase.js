@@ -10,6 +10,8 @@ const ForgetPasswordBase = () => {
   const handelGetOtp = () => {
     setLoading(true)
     fetch(base_url + `/forget_password_otp_generation?user_mail=${email}`).then(async (res) => {
+      console.log(email)
+      localStorage.setItem("user_email", email)
       setLoading(false)
       if (res.status === 200) {
         setDisplayText("block")
@@ -31,13 +33,13 @@ const ForgetPasswordBase = () => {
   return (
     <div className='page'>
 
-      <div className="bg-gradient-to-b from-white to-gray-200 text-black py-20 flex justify-center">
-        <div className="w-1/2 text-center bg-white p-8 rounded-lg shadow-lg">
+      <div style={{width : "50vw"}} className="bg-gradient-to-b from-white to-gray-200 text-black py-20 flex justify-center forgetclasstop">
+        <div style={{width : "50%"}} className="w-1/2 text-center bg-white p-8 rounded-lg shadow-lg forgetclass">
           <h1 className="text-4xl font-bold mb-4">
             Forgot Password ???
           </h1>
           <p className="text-gray-600 mb-8">
-            NO worries, Get the OTP by clicking below and validate it by clicking below to change your password to new password
+            NO worries, Change your password thorugh OTP
           </p>
           <div >
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
