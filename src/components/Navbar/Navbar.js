@@ -1,13 +1,17 @@
 // src/components/Navbar.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-
-    return (
-        <div style={{height : "10vh"}} className="navbar bg-white-100">
+    const navigate = useNavigate()
+    const handleLogout=()=>{
+        localStorage.removeItem("user_token")
+        navigate("/login")
+    }
+    return (localStorage.getItem("user_token") && 
+        (<div style={{height : "10vh"}} className="navbar bg-white-100">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Stack overflow clone</a>
+                <Link to="/" className="btn btn-ghost text-xl">Stack overflow clone</Link>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
@@ -24,18 +28,17 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
                         <li><Link to= "/yourquestions">Your questions</Link></li>
-                        <li><a>Logout</a></li>
+                        <li>
+                            <Link to="/youranswers" className="justify-between">
+                                Your answers
+                            </Link>
+                        </li>
+                        <li><button onClick={handleLogout}>{localStorage.getItem("user_token") ? "Log out" : "log in"}</button></li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>)
     );
 };
 
