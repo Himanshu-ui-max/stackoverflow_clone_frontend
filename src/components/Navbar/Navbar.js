@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const {query, mount} = props
     const navigate = useNavigate()
     const handleLogout=()=>{
         localStorage.removeItem("user_token")
@@ -15,7 +16,16 @@ const Navbar = () => {
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
-                    <input style={{width : "500px"}} type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                    <form onSubmit={(e)=>{
+                        e.preventDefault()
+                        if(query !== ""){
+                            props.setMount(!mount)
+                            navigate("/search_by_title")
+                        }
+                        }}>
+
+                    <input style={{width : "500px"}} type="search" placeholder="Search" className="input input-bordered w-24 md:w-auto" value={query} onChange={(e)=>{props.setQuery(e.target.value)}} />
+                    </form>
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
