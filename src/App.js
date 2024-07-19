@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { useState } from 'react';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Test from "./components/Test"
@@ -11,7 +12,7 @@ import ForgetPasswordBase from './components/forgetPasswordcomps/ForgetPasswordB
 import Forgetpasswordvalidation from './components/forgetPasswordcomps/Forgetpasswordvalidation';
 import Navbar from './components/Navbar/Navbar';
 import Questions from './components/Questions';
-import { useState } from 'react';
+import Question from './components/Question';
 function App() {
   const [query, setQuery] = useState("");
   const [mount, setMount] = useState(false);
@@ -28,6 +29,7 @@ function App() {
           <Route element={<Forgetpasswordvalidation/>} exact path="/forgotpasswordvalidation"></Route>
           <Route element={<Questions key={"yourQuestions"} type={"yourQuestions"} query={query} mount={mount}/>} exact path="/yourquestions"></Route>
           <Route element={<Test/>} exact path="/test"></Route>
+          <Route element={<Question/>} exact path="/question/:id"></Route>
         </Routes>
       </Router>
     </>

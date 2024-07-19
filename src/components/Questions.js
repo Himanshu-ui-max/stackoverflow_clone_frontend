@@ -30,6 +30,9 @@ export default function Questions(props) {
                     };
                 }
                 else if(type === "searchByTitle"){
+                    if(query === ""){
+                        navigate("/")
+                    }
                     setHeading(query)
                     url = `${base_url}/get_question_by_title?title=${query}`
                 }
@@ -42,6 +45,7 @@ export default function Questions(props) {
                     setQuestions(data);
                 } else {
                     alert("Some error occurred. Redirecting to login page");
+                    localStorage.removeItem("user_token")
                     navigate("/login");
                 }
             } catch (error) {
