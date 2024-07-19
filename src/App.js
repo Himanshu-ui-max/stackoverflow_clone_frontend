@@ -33,7 +33,8 @@ function App() {
           <Route element={<Test/>} exact path="/test"></Route>
           <Route element={<Question/>} exact path="/question/:id"></Route>
           <Route element={<PostAnswer/>} exact path="/post_answer/:id"></Route>
-          <Route element={<PostQuestion/>} exact path="/post_question"></Route>
+          <Route element={<PostQuestion key={"post"} type={"post"}/>}  exact path="/post_question"></Route>
+          <Route element={<PostQuestion key={"edit"} type={"edit"}/>}  exact path="/edit_question/:id"></Route>
         </Routes>
       </Router>
     </>

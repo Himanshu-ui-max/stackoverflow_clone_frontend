@@ -29,8 +29,8 @@ export default function Questions(props) {
                         }
                     };
                 }
-                else if(type === "searchByTitle"){
-                    if(query === ""){
+                else if (type === "searchByTitle") {
+                    if (query === "") {
                         navigate("/")
                     }
                     setHeading(query)
@@ -61,37 +61,47 @@ export default function Questions(props) {
     return (
 
         <>
-        <h1 style={{marginBottom : "30px", marginTop : "30px", textAlign : "center"}}>{type === "topQuestions"?"Top Questions" :type === "yourQuestions" ? "Your Questions" : `Showing result for : ${heading}`}</h1>
-        <div style={{ width: "99vw", height: "90vh", display: "flex", flexDirection :  "column", alignItems :  "center" }}>
-            <div style={{ width: "80vw", overflow: "auto", height : type === "topQuestions" ? "50vh" : "70vh" }}>
-                {!loading ? (
-                    <ul role="list" className="divide-y divide-gray-100">
-                        {questions.map((question) => (
-                            <Link className="link" key={question.id} style={{ width: "50vw", borderRadius: "50px" }} to={`/question/${question.id}`}>
-                                <li style={{ paddingRight: "10px", paddingLeft: "10px", borderRadius: "10px" }} className="flex justify-between gap-x-6 py-5">
-                                    <div className="flex min-w-0 gap-x-4">
-                                        <div className="min-w-0 flex-auto">
-                                            <p className="text-sm font-semibold leading-6 text-gray-900">{question.title}</p>
-                                            {question.tags.map((tag) => (
-                                                <span key={tag} className="mt-1 truncate text-xs leading-5 text-gray-500">{tag}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                                        <p className="text-sm leading-6 text-gray-900">&rarr;</p>
-                                    </div>
-                                </li>
-                                <hr />
-                            </Link>
-                        ))}
-                    </ul>
-                ) : "loading..."}
+            <h1 style={{ marginBottom: "30px", marginTop: "30px", textAlign: "center" }}>{type === "topQuestions" ? "Top Questions" : type === "yourQuestions" ? "Your Questions" : `Showing result for : ${heading}`}</h1>
+            <div style={{ width: "99vw", height: "90vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div style={{ width: "80vw", overflow: "auto", height: type === "topQuestions" ? "50vh" : "70vh" }}>
+                    {!loading ? (
+                        <ul role="list" className="divide-y divide-gray-100">
+                            {questions.map((question) => (
+                                <>
+                                    <Link className="link" key={question.id} style={{ width: "50vw", borderRadius: "50px" }} to={`/question/${question.id}`}>
+                                        <li style={{ paddingRight: "10px", paddingLeft: "10px", borderRadius: "10px" }} className="flex justify-between gap-x-6 py-5">
+                                            <div className="flex min-w-0 gap-x-4">
+                                                <div className="min-w-0 flex-auto">
+                                                    <p className="text-sm font-semibold leading-6 text-gray-900">{question.title}</p>
+                                                    {question.tags.map((tag) => (
+                                                        <span key={tag} className="mt-1 truncate text-xs leading-5 text-gray-500">{tag}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                                                <p className="text-sm leading-6 text-gray-900">&rarr;</p>
+                                            </div>
+                                        </li>
+                                    </Link>
+                                    {type === "yourQuestions" && (<div>
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { navigate(`/edit_question/${question.id}`) }}>
+                                            Edit
+                                        </button>
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { navigate(`/post_answer/${question.id}`) }}>
+                                            Delete
+                                        </button>
+                                    </div>)}
+                                    <hr />
+                                </>
+                            ))}
+                        </ul>
+                    ) : "loading..."}
+                </div>
+                {type === "topQuestions" && (<div style={{ marginTop: "20px" }} className="join grid grid-cols-2">
+                    <button disabled={pagenumber === 1} onClick={(e) => { setPagenumber(pagenumber - 1) }} className="join-item btn btn-outline">Previous page</button>
+                    <button disabled={questions.length < 5} onClick={(e) => { setPagenumber(pagenumber + 1) }} className="join-item btn btn-outline">Next</button>
+                </div>)}
             </div>
-            {type === "topQuestions" && (<div style={{marginTop : "20px"}} className="join grid grid-cols-2">
-                <button disabled={pagenumber === 1} onClick={(e)=>{setPagenumber(pagenumber - 1)}} className="join-item btn btn-outline">Previous page</button>
-                <button disabled={questions.length < 5} onClick={(e)=>{setPagenumber(pagenumber + 1)}} className="join-item btn btn-outline">Next</button>
-            </div>)}
-        </div>
         </>
     )
 }
