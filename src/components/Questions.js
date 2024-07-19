@@ -58,11 +58,11 @@ export default function Questions(props) {
 
         <>
         <h1 style={{marginBottom : "30px", marginTop : "30px", textAlign : "center"}}>{type === "topQuestions"?"Top Questions" :type === "yourQuestions" ? "Your Questions" : `Showing result for : ${heading}`}</h1>
-        <div style={{ width: "99vw", height: "90vh", display: "flex", justifyContent: "center", flexDirection : type === "topQuestions" ? "column" : "row", alignItems :  (type === "topQuestions") ? "center" : "top" }}>
-            <div style={{ width: "80vw", overflow: "auto" }}>
+        <div style={{ width: "99vw", height: "90vh", display: "flex", flexDirection :  "column", alignItems :  "center" }}>
+            <div style={{ width: "80vw", overflow: "auto", height : type === "topQuestions" ? "50vh" : "70vh" }}>
                 {!loading ? (
                     <ul role="list" className="divide-y divide-gray-100">
-                        {questions.map((question, i) => (
+                        {questions.map((question) => (
                             <Link className="link" key={question.id} style={{ width: "50vw", borderRadius: "50px" }} to={`/question/${question.id}`}>
                                 <li style={{ paddingRight: "10px", paddingLeft: "10px", borderRadius: "10px" }} className="flex justify-between gap-x-6 py-5">
                                     <div className="flex min-w-0 gap-x-4">
@@ -74,7 +74,7 @@ export default function Questions(props) {
                                         </div>
                                     </div>
                                     <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                                        <p className="text-sm leading-6 text-gray-900">{i}</p>
+                                        <p className="text-sm leading-6 text-gray-900">&rarr;</p>
                                     </div>
                                 </li>
                                 <hr />
@@ -85,7 +85,7 @@ export default function Questions(props) {
             </div>
             {type === "topQuestions" && (<div style={{marginTop : "20px"}} className="join grid grid-cols-2">
                 <button disabled={pagenumber === 1} onClick={(e)=>{setPagenumber(pagenumber - 1)}} className="join-item btn btn-outline">Previous page</button>
-                <button onClick={(e)=>{setPagenumber(pagenumber + 1)}} className="join-item btn btn-outline">Next</button>
+                <button disabled={questions.length < 5} onClick={(e)=>{setPagenumber(pagenumber + 1)}} className="join-item btn btn-outline">Next</button>
             </div>)}
         </div>
         </>
