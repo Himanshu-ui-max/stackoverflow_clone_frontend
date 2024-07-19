@@ -9,10 +9,12 @@ import Signup from './components/Signup';
 import Test from "./components/Test"
 import ForgetPasswordBase from './components/forgetPasswordcomps/ForgetPasswordBase';
 import Forgetpasswordvalidation from './components/forgetPasswordcomps/Forgetpasswordvalidation';
+import Navbar from './Navbar/Navbar';
 function App() {
   return (
     <>
       <Router>
+        <Navbar/>
         <Routes>
           <Route element={<Login/>} path="/login"></Route>
           <Route element={<Signup/>} path="/signup"></Route>
