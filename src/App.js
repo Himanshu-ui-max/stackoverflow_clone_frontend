@@ -13,6 +13,7 @@ import Forgetpasswordvalidation from './components/forgetPasswordcomps/Forgetpas
 import Navbar from './components/Navbar/Navbar';
 import Questions from './components/Questions';
 import Question from './components/Question';
+import PostAnswer from './components/PostAnswer';
 function App() {
   const [query, setQuery] = useState("");
   const [mount, setMount] = useState(false);
@@ -30,6 +31,7 @@ function App() {
           <Route element={<Questions key={"yourQuestions"} type={"yourQuestions"} query={query} mount={mount}/>} exact path="/yourquestions"></Route>
           <Route element={<Test/>} exact path="/test"></Route>
           <Route element={<Question/>} exact path="/question/:id"></Route>
+          <Route element={<PostAnswer/>} exact path="/post_answer/:id"></Route>
         </Routes>
       </Router>
     </>

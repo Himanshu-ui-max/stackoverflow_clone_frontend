@@ -61,6 +61,8 @@ const Question = () => {
     }, []);
     return (
         <div style={{ width: "100vw", display : "flex", flexDirection : "column", alignItems : "center" }}>
+            <div style={{width : "80vw",display : 'flex', flexDirection : "column"}} className='headingTop'>
+
             <div style={{width : "80vw", display: 'flex', justifyContent: "space-between" }} className='heading'>
                 <div style={{ display: 'flex', flexDirection: 'column', marginLeft: "10px" }} className='text'>
                     <div style={{ fontSize: "2rem" }} className='title'><b>{question.title}</b></div>
@@ -68,11 +70,15 @@ const Question = () => {
                         return (
                             <div style={{ marginRight: "5px", fontSize: "1rem" }} key={i} className="badge text-blue-500">{tag}</div>
                         )
-                    })}</div>
+                    })}
+                    </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: "center", marginRight: "10px" }} className='answerButt'> <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <div style={{ display: 'flex', alignItems: "center", marginRight: "10px" }} className='answerButt'> <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e)=>{navigate(`/post_answer/${id}`)}}>
                     Answer
                 </button></div>
+            </div>
+            
+                <div style={{width : "80vw",marginLeft : "10px", marginTop : "10px", overflow : "auto"}} className='question'>{question.Question}</div>
             </div>
             <div style={{width : "80vw", height : "70vh", display : "flex",flexDirection : "column",alignItems : "center", marginTop : "50px", overflow : "auto"}}>
                 {
