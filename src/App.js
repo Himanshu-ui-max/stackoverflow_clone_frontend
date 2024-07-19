@@ -10,6 +10,7 @@ import Test from "./components/Test"
 import ForgetPasswordBase from './components/forgetPasswordcomps/ForgetPasswordBase';
 import Forgetpasswordvalidation from './components/forgetPasswordcomps/Forgetpasswordvalidation';
 import Navbar from './Navbar/Navbar';
+import YourQuestions from './YourQuestions';
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
           <Route element={<Signup/>} path="/signup"></Route>
           <Route element={<ForgetPasswordBase/>} path="/forgetpasswordbase"></Route>
           <Route element={<Forgetpasswordvalidation/>} path="/forgotpasswordvalidation"></Route>
+          <Route element={<YourQuestions/>} path="/yourquestions"></Route>
           <Route element={<Test/>} path="/test"></Route>
         </Routes>
       </Router>

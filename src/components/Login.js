@@ -24,7 +24,7 @@ const Login = () => {
       const data = await res.json()
       if(res.status === 200){
           console.log(data)
-          localStorage.setItem("token", data)
+          localStorage.setItem("user_token", data)
           navigate("/")
       }
       else{

@@ -1,10 +1,11 @@
 // src/components/Navbar.jsx
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
     return (
-        <div className="navbar bg-white-100">
+        <div style={{height : "10vh"}} className="navbar bg-white-100">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">Stack overflow clone</a>
             </div>
@@ -29,7 +30,7 @@ const Navbar = () => {
                                 <span className="badge">New</span>
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
+                        <li><Link to= "/yourquestions">Your questions</Link></li>
                         <li><a>Logout</a></li>
                     </ul>
                 </div>
