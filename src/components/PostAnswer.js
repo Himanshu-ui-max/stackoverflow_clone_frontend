@@ -65,9 +65,7 @@ const PostAnswer = () => {
             <ReactQuill theme='snow' style={{ width: "80vw", height: "70vh" }} modules={module} value={answer} onChange={setAnswer} />
             <div style={{ marginTop: "80px", textAlign: "left", width : "80vw" }}>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>{
-                    let result = answer.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
-                    console.log(result)
-                    handlePost(result)
+                        handlePost(answer)
                     }}>
                     {loading ? <div style={{textAlign : 'center', display : "flex", justifyContent : "center"}} role="status">
                 <svg aria-hidden="true" className="w-8 h-8 text-white-200 animate-spin dark:text-white-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

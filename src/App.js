@@ -14,6 +14,7 @@ import Navbar from './components/Navbar/Navbar';
 import Questions from './components/Questions';
 import Question from './components/Question';
 import PostAnswer from './components/PostAnswer';
+import PostQuestion from './components/PostQuestion';
 function App() {
   const [query, setQuery] = useState("");
   const [mount, setMount] = useState(false);
@@ -32,6 +33,7 @@ function App() {
           <Route element={<Test/>} exact path="/test"></Route>
           <Route element={<Question/>} exact path="/question/:id"></Route>
           <Route element={<PostAnswer/>} exact path="/post_answer/:id"></Route>
+          <Route element={<PostQuestion/>} exact path="/post_question"></Route>
         </Routes>
       </Router>
     </>

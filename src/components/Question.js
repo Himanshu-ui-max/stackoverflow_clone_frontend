@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import HTMLReactParser from 'html-react-parser/lib/index';
 
 const Question = () => {
     const [loading1, setLoading1] = useState(false);
@@ -78,7 +79,7 @@ const Question = () => {
                 </button></div>
             </div>
             
-                <div style={{width : "80vw",marginLeft : "10px", marginTop : "10px", overflow : "auto"}} className='question'>{question.Question}</div>
+                <div style={{width : "80vw",marginLeft : "10px", marginTop : "10px", overflow : "auto"}} className='question'>{question.Question && HTMLReactParser(question.Question)}</div>
             </div>
             <div style={{width : "80vw", height : "70vh", display : "flex",flexDirection : "column",alignItems : "center", marginTop : "50px", overflow : "auto"}}>
                 {
@@ -90,7 +91,7 @@ const Question = () => {
                                 </p>
                                 <hr/>
                                 <p>
-                                    {answer.answer}
+                                    {answer.answer && HTMLReactParser(answer.answer)}
                                 </p>
                             </div>
                         )
