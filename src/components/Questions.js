@@ -10,9 +10,7 @@ export default function Questions(props) {
     const pagesize = 5;
     const [heading, setHeading] = useState("");
     const navigate = useNavigate();
-    const [loadinDelete, setLoadinDelete] = useState(false);
     const handleDelete=(id)=>{
-        setLoadinDelete(true)
         fetch(`${base_url}/delete_question?ques_id=${id}`, {
             method : "DELETE",
             headers : {

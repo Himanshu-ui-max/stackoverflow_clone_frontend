@@ -7,10 +7,8 @@ const Answers = () => {
     const [answers, setAnswers] = useState([]);
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false);
-    const [loadinDelete, setLoadinDelete] = useState(false);
     const base_url = process.env.REACT_APP_BASE_URL;
     const handleDelete=(id)=>{
-        setLoadinDelete(true)
         fetch(`${base_url}/delete_answer?answer_id=${id}`, {
             method : "DELETE",
             headers : {
@@ -37,6 +35,7 @@ const Answers = () => {
                 "Token": localStorage.getItem("user_token")
             }
         }).then(async (res) => {
+            setLoading(false)
             const data = await res.json()
             if (res.status === 200) {
                 console.log(data)
@@ -61,7 +60,7 @@ const Answers = () => {
             <h1>Your answers</h1>
             <div style={{ width: "80vw", height: "70vh", overflow: "auto", marginTop: "50px" }}>
                 {
-                    answers.map((answer) => {
+                   !loading ? (answers.map((answer) => {
                         return (
                             <div style={{width: "77vw", border : "1px solid black",borderRadius : "3px", marginBottom : "10px", paddingBottom : "10px", paddingLeft : "10px"}}>
                                 <Link className='answer-link' to={`/question/${answer.question_id}`}>
@@ -84,7 +83,7 @@ const Answers = () => {
                                 </div>
                             </div>
                         )
-                    })
+                    })) : "loading..."
                 }
             </div>
         </div>
