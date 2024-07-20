@@ -59,6 +59,7 @@ const Question = () => {
     useEffect(() => {
         fetchQuestion();
         fetchAnswer();
+        // eslint-disable-next-line
     }, []);
     return (
         <div style={{ width: "100vw", display: "flex", flexDirection: "column", alignItems: "center" }}>

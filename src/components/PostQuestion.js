@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; //quill's css important
 import { TagsInput } from "react-tag-input-component";
@@ -13,9 +13,6 @@ const PostQuestion = (props) => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const base_url = process.env.REACT_APP_BASE_URL;
-    useEffect(() => {
-        console.log(props.type)
-    }, [ ]);
     const handleSubmit = async () => {
         console.log(tag)
         setLoading(true);

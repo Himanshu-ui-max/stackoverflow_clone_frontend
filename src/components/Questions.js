@@ -74,6 +74,7 @@ export default function Questions(props) {
         };
 
         fetchQuestions();
+        // eslint-disable-next-line
     }, [base_url, pagenumber, type, navigate, mount]);
 
     return (
@@ -83,6 +84,7 @@ export default function Questions(props) {
             <div style={{ width: "99vw", height: "90vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div style={{ width: "80vw", overflow: "auto", height: type === "topQuestions" ? "50vh" : "70vh" }}>
                     {!loading ? (
+                        // eslint-disable-next-line
                         <ul role="list" className="divide-y divide-gray-100">
                             {questions.map((question) => (
                                 <>

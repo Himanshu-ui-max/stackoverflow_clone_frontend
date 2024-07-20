@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import HTMLReactParser from 'html-react-parser/lib/index';
 import "./answers.css"
 
@@ -54,6 +54,7 @@ const Answers = () => {
     }
     useEffect(() => {
         fetchAnswers()
+        // eslint-disable-next-line
     }, []);
     return (
         <div style={{ width: "100vw", display: "flex", flexDirection: "column", alignItems: 'center' }}>

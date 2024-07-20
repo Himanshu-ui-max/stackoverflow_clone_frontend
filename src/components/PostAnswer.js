@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import "react-quill/dist/quill.snow.css"
 import { useNavigate, useParams } from 'react-router-dom'
@@ -24,7 +24,6 @@ const PostAnswer = (props) => {
                     "question_id" : id
                 })
             }).then(async (res)=>{
-                const data = res.json()
                 if(res.status === 200){
                     alert("Answer posted successfuly. Redirecting to homepage")
                     navigate("/")
@@ -56,7 +55,6 @@ const PostAnswer = (props) => {
                     "answer" : result,
                 })
             }).then(async (res)=>{
-                const data = res.json()
                 if(res.status === 200){
                     alert("Answer edited successfuly. Redirecting to homepage")
                     navigate("/")
