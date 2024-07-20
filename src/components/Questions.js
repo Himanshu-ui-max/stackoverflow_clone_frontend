@@ -37,6 +37,9 @@ export default function Questions(props) {
                 let options = {};
 
                 if (type === "topQuestions") {
+                    if(!localStorage.getItem("user_token")){
+                        navigate("/login")
+                    }
                     url = `${base_url}/get_questions?pagesize=${pagesize}&pagenumber=${pagenumber}`;
                 } else if (type === "yourQuestions") {
                     url = `${base_url}/get_user_questions`;
