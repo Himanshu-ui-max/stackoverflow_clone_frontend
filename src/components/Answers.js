@@ -66,16 +66,21 @@ const Answers = () => {
                             <div style={{width: "77vw", border : "1px solid black",borderRadius : "3px", marginBottom : "10px", paddingBottom : "10px", paddingLeft : "10px"}}>
                                 <Link className='answer-link' to={`/question/${answer.question_id}`}>
                                     <div style={{paddingLeft : "10px", paddingTop: "10px", paddingBottom: "10px", marginLeft: "-10px",marginBottom: "10px" }}>
-                                        {answer.answer && HTMLReactParser(answer.answer)}
+                                        {answer.question_title}
                                     </div>
                                 </Link>
-                                <div>
+                                <div style={{display : "flex", justifyContent : "space-between"}}>
+                                    <div>
+                                        {answer.answer && HTMLReactParser(answer.answer)}
+                                    </div>
+                                    <div style={{marginRight : "10px"}}>
                                     <button style={{ marginRight: "5px" }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { navigate(`/edit_answer/${answer.id}`) }}>
                                         Edit
                                     </button>
                                     <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { handleDelete(answer.id) }}>
                                         Delete
                                     </button>
+                                    </div>
                                 </div>
                             </div>
                         )
