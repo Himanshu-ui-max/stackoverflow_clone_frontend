@@ -10,7 +10,27 @@ export default function Questions(props) {
     const pagesize = 5;
     const [heading, setHeading] = useState("");
     const navigate = useNavigate();
-
+    const [loadinDelete, setLoadinDelete] = useState(false);
+    const handleDelete=(id)=>{
+        setLoadinDelete(true)
+        fetch(`${base_url}/delete_question?ques_id=${id}`, {
+            method : "DELETE",
+            headers : {
+                "Token" : localStorage.getItem("user_token")
+            }
+        }).then((res)=>{
+            if(res.status === 200){
+                alert("question deleted successfuly")
+                window.location.reload()
+            }
+            else{
+                alert("Some internal error occured. Redirecting to login page")
+                navigate("/login")
+            }
+        }).catch((error)=>{
+            alert(error)
+        })
+    }
     useEffect(() => {
         const fetchQuestions = async () => {
             setLoading(true);
@@ -84,14 +104,14 @@ export default function Questions(props) {
                                         </li>
                                     </Link>
                                     {type === "yourQuestions" && (<div>
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { navigate(`/edit_question/${question.id}`) }}>
+                                        <button style={{marginRight : "5px"}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { navigate(`/edit_question/${question.id}`) }}>
                                             Edit
                                         </button>
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { navigate(`/post_answer/${question.id}`) }}>
+                                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => { handleDelete(question.id) }}>
                                             Delete
                                         </button>
                                     </div>)}
-                                    <hr />
+                                    <hr style={{width: "2px"}} />
                                 </>
                             ))}
                         </ul>
