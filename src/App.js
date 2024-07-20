@@ -15,6 +15,7 @@ import Questions from './components/Questions';
 import Question from './components/Question';
 import PostAnswer from './components/PostAnswer';
 import PostQuestion from './components/PostQuestion';
+import Answers from './components/Answers';
 function App() {
   const [query, setQuery] = useState("");
   const [mount, setMount] = useState(false);
@@ -31,8 +32,10 @@ function App() {
           <Route element={<Forgetpasswordvalidation/>} exact path="/forgotpasswordvalidation"></Route>
           <Route element={<Questions key={"yourQuestions"} type={"yourQuestions"} query={query} mount={mount}/>} exact path="/yourquestions"></Route>
           <Route element={<Test/>} exact path="/test"></Route>
+          <Route element={<Answers/>} exact path="/youranswers"></Route>
           <Route element={<Question/>} exact path="/question/:id"></Route>
-          <Route element={<PostAnswer/>} exact path="/post_answer/:id"></Route>
+          <Route element={<PostAnswer key={"post"} type={"post"}/>} exact path="/post_answer/:id"></Route>
+          <Route element={<PostAnswer key={"edit"} type={"edit"}/>} exact path="/edit_answer/:id"></Route>
           <Route element={<PostQuestion key={"post"} type={"post"}/>}  exact path="/post_question"></Route>
           <Route element={<PostQuestion key={"edit"} type={"edit"}/>}  exact path="/edit_question/:id"></Route>
         </Routes>

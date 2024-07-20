@@ -2,45 +2,76 @@ import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
 import "react-quill/dist/quill.snow.css"
 import { useNavigate, useParams } from 'react-router-dom'
-const PostAnswer = () => {
+const PostAnswer = (props) => {
     const { id } = useParams()
+    const {type} = props
     const [loading, setLoading] = useState(false);
     const [answer, setAnswer] = useState("");
     const base_url = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate()
     const handlePost=(result)=>{
         setLoading(true)
-        fetch(base_url + "/create_answer",{
-            method : "POST",
-            headers : {
-                "Token" : localStorage.getItem("user_token"),
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body : JSON.stringify({
-                "answer" : result,
-                "question_id" : id
-            })
-        }).then(async (res)=>{
-            const data = res.json()
-            if(res.status === 200){
-                alert("Answer posted successfuly. Redirecting to homepage")
-                navigate("/")
-            }
-            else if (res.status === 400){
-                alert("You have already answered this question. Redirecting to homepage")
-                navigate("/")
-            }
-            else{
-                alert("Some internal error occured. Redirecting to login page")
+        if(type === "post"){
+            fetch(base_url + "/create_answer",{
+                method : "POST",
+                headers : {
+                    "Token" : localStorage.getItem("user_token"),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify({
+                    "answer" : result,
+                    "question_id" : id
+                })
+            }).then(async (res)=>{
+                const data = res.json()
+                if(res.status === 200){
+                    alert("Answer posted successfuly. Redirecting to homepage")
+                    navigate("/")
+                }
+                else if (res.status === 400){
+                    alert("You have already answered this question. Redirecting to homepage")
+                    navigate("/")
+                }
+                else{
+                    alert("Some internal error occured. Redirecting to login page")
+                    localStorage.removeItem("user_token")
+                    navigate("/login")
+                }
+            }).catch((error)=>{
+                alert(error + ". Redirecting to login page")
                 localStorage.removeItem("user_token")
                 navigate("/login")
-            }
-        }).catch((error)=>{
-            alert(error + ". Redirecting to login page")
-            localStorage.removeItem("user_token")
-            navigate("/login")
-        })
+            })
+        }
+        else if(type === "edit"){
+            fetch(`${base_url}/edit_answer?ans_id=${id}`,{
+                method : "PUT",
+                headers : {
+                    "Token" : localStorage.getItem("user_token"),
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify({
+                    "answer" : result,
+                })
+            }).then(async (res)=>{
+                const data = res.json()
+                if(res.status === 200){
+                    alert("Answer edited successfuly. Redirecting to homepage")
+                    navigate("/")
+                }
+                else{
+                    alert("Some internal error occured. Redirecting to login page")
+                    localStorage.removeItem("user_token")
+                    navigate("/login")
+                }
+            }).catch((error)=>{
+                alert(error + ". Redirecting to login page")
+                localStorage.removeItem("user_token")
+                navigate("/login")
+            })
+        }
     }
     var toolbarOptions = [
         ['bold', 'Italic', 'underline', 'strike'], // toggled buttons
