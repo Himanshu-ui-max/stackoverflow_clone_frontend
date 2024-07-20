@@ -31,6 +31,7 @@ const Login = () => {
         alert(data.detail)
       }
     }).catch((e)=>{
+      console.log(e)
       alert(e)
     })
   }
